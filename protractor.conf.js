@@ -2,9 +2,11 @@
 
 exports.config = {
   directConnect: true,
+  framework: 'custom',
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   specs: [
-    'spec/*.spec.js'
+    'features/*.feature'
   ],
 
   capabilities: {
@@ -12,10 +14,16 @@ exports.config = {
     'chromeOptions': {'args': ['--disable-extensions']}
   },
 
-  jasmineNodeOpts: {
-    onComplete: null,
-    isVerbose: false,
-    showColors: true,
-    includeStackTrace: true
+  cucumberOpts: {
+    require: 'features/step_definitions/*.js',
+    tags: false,
+    format: ['json:results.json', 'pretty'],
+    profile: false,
+    'no-source': true
+  },
+
+  onPrepare: function() {
+    browser.ignoreSynchronization=true;
   }
+
 };

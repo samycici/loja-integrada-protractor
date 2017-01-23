@@ -1,15 +1,20 @@
-Sample project for experimenting ES6 with Protractor.
-
+Projeto de Exemplo testando a [Loja Integrada](http://tghcastro.lojaintegrada.com.br/) usando Protractor + Cucumber.js
 ___
 
-To install the dependencies of this project use:
+Para atualizar o webdriver-manager, use:
+
+```
+webdriver-manager update
+```
+
+Para instalar as dependências use:
 
 ```
 npm install
 ```
 
-To run the tests, from the project's root directory, run:
+Para rodar os testes, no diretório root do projeto, use:
 
 ```
-protractor
+npm test
 ```
