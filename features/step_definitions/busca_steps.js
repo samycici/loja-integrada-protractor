@@ -3,8 +3,8 @@ let chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
-const Homepage = require('../page-objects/homepage.po.js');
-const Resultado = require('../page-objects/resultado.po.js');
+const Homepage = require('../page_objects/homepage.po.js');
+const Resultado = require('../page_objects/resultado.po.js');
 
 module.exports = function() {
   const homepage = new Homepage();
