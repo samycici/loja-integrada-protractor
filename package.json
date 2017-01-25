@@ -10,8 +10,6 @@
     "mocha": "^3.2.0",
     "protractor": "^4.0.3",
     "protractor-cucumber-framework": "0.6.0",
-    "protractor-screenshot-reporter": "0.0.5",
-    "shortid": "^2.2.6"
   },
   "repository": {
     "type": "git",
