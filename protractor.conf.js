@@ -5,6 +5,7 @@ exports.config = {
   ignoreUncaughtExceptions: true,
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
+  restartBrowserBetweenTests: true,
 
   specs: [
     'features/*.feature'
