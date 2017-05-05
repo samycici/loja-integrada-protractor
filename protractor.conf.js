@@ -1,11 +1,24 @@
 'use strict';
+//   const VisualReview = require('visualreview-protractor');
+// let vr = new VisualReview({
+//   hostname: 'localhost',
+//   port: 7000,
+//
+//   propertiesFn: function (capabilities) {
+//     return {
+//       'os': capabilities.platform,
+//       'browser': capabilities.browserName,
+//       'version': capabilities.version
+//     };
+//   }
+// });
 
 exports.config = {
   directConnect: true,
   ignoreUncaughtExceptions: true,
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
-  restartBrowserBetweenTests: true,
+  restartBrowserBetweenTests: false,
 
   specs: [
     'features/*.feature'
@@ -13,11 +26,16 @@ exports.config = {
 
   capabilities: {
     'browserName': 'chrome',
-    'chromeOptions': {'args': ['--disable-extensions']}
+    'chromeOptions': {
+      'args': ['--disable-extensions']
+    }
   },
 
   cucumberOpts: {
-    require: 'features/step_definitions/*.js',
+    require: [
+      'features/step_definitions/*.js',
+      'features/helpers/hooks.js'
+    ],
     tags: false,
     format: ['json:results.json', 'pretty'],
     profile: false,
@@ -25,6 +43,7 @@ exports.config = {
   },
 
   beforeLaunch: function() {
+    //return vr.initRun('lojaintegrada', 'steps');
     setTimeout(function() {
         browser.driver.executeScript(function() {
             return {
@@ -42,7 +61,8 @@ exports.config = {
     browser.ignoreSynchronization=true;
   },
 
-  afterLaunch: function() {
+  afterLaunch: function(exitCode) {
+    // return vr.cleanup(exitCode);
     var reporter = require('cucumber-html-reporter');
 
     var options = {
@@ -65,5 +85,8 @@ exports.config = {
 
   },
 
+  // params: {
+  // visualreview: vr
+  // },
 
 };

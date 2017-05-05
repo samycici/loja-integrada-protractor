@@ -40,4 +40,17 @@ module.exports = function() {
           });
        });
 
+  this.When(/^eu busco pelo termo "([^"]*)"$/, function (termo, callback) {
+        homepage.buscarFilme(termo)
+        browser.takeScreenshot().then(function (png) {
+            writeScreenShot(png, 'screens/busca.png');
+        });
+        callback();
+          });
+
+  this.Then(/^visualizo o resultado de busca com todos os filmes que tem esse termo$/, {timeout: 70 * 1000}, function (callback) {
+        expect(resultado.listagemProdutos.count()).to.eventually.equal(2)
+         .and.notify(callback);
+          });
+
 };
